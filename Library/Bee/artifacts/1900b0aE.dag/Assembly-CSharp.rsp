@@ -392,6 +392,7 @@
 -analyzer:"G:/software/Unity Editor/2023.3.0a16/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"G:/software/Unity Editor/2023.3.0a16/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"G:/software/Unity Editor/2023.3.0a16/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scripts/AudioManager.cs"
 "Assets/Scripts/CameraFollow.cs"
 "Assets/Scripts/Elevator.cs"
 "Assets/Scripts/GameManager.cs"
@@ -399,6 +400,7 @@
 "Assets/Scripts/ResolutionSetting.cs"
 "Assets/Scripts/SceneLoader.cs"
 "Assets/Scripts/SpawnPad.cs"
+"Assets/Scripts/VolumeManager.cs"
 -langversion:9.0
 
 /deterministic
