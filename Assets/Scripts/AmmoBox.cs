@@ -8,13 +8,12 @@ public class AmmoBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player collided with ammo box!");
 
             // Increase player's ammo count
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                Debug.Log("Granting ammo to player: " + ammoAmount);
+                
                 playerController.IncreaseAmmo(ammoAmount);
             }
 

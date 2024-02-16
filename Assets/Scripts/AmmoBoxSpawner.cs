@@ -1,27 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoBoxSpawner : MonoBehaviour
 {
-    public GameObject ammoBoxPrefab; // Reference to the collectible ammo box prefab
-    public Transform ground; // Reference to the ground object
+    public GameObject ammoBoxPrefab; // Reference to the ammo box prefab
+    public float spawnInterval = 10f; // Time interval between spawns
+    public Transform groundTransform; // Reference to the ground transform where ammo boxes will spawn
 
-    public Vector3 spawnAreaSize = new Vector3(10f, 1f, 10f); // Size of the spawn area
-
-    private void Start()
+    void Start()
     {
-        SpawnAmmoBox();
+        // Start the coroutine to spawn ammo boxes
+        StartCoroutine(SpawnAmmoBoxesRoutine());
     }
 
-    private void SpawnAmmoBox()
+    IEnumerator SpawnAmmoBoxesRoutine()
     {
-        // Calculate random position within the spawn area
-        Vector3 randomPosition = ground.position + new Vector3(
-            Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f),
-            spawnAreaSize.y,
-            Random.Range(-spawnAreaSize.z / 2f, spawnAreaSize.z / 2f)
-        );
+        while (true)
+        {
+            // Wait for the specified interval
+            yield return new WaitForSeconds(spawnInterval);
 
-        // Instantiate the collectible ammo box at the random position
-        Instantiate(ammoBoxPrefab, randomPosition, Quaternion.identity);
+            // Spawn an ammo box
+            SpawnAmmoBox();
+        }
+    }
+
+    void SpawnAmmoBox()
+    {
+        // Generate a random position within the ground area
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+
+        // Instantiate the ammo box at the spawn position
+        Instantiate(ammoBoxPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    Vector3 GetRandomSpawnPosition()
+    {
+        // Get the size of the ground collider
+        Vector3 groundSize = groundTransform.localScale;
+
+        // Calculate random x and z positions within the ground area
+        float randomX = Random.Range(-groundSize.x / 2f, groundSize.x / 2f);
+        float randomZ = Random.Range(-groundSize.z / 2f, groundSize.z / 2f);
+
+        // Set the y position slightly above the ground to ensure it drops down
+        float spawnHeight = groundTransform.position.y + groundSize.y / 2f + 1f;
+
+        // Return the random spawn position
+        return new Vector3(randomX, spawnHeight, randomZ);
     }
 }

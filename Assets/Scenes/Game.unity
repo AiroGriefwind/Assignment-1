@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoBoxPrefab: {fileID: 7876606622578953984, guid: e9912624d23a7a345901711f550469cf, type: 3}
-  ground: {fileID: 1991760373}
-  spawnAreaSize: {x: 10, y: 1, z: 10}
+  spawnInterval: 2
+  groundTransform: {fileID: 1991760373}
 --- !u!4 &469271733
 Transform:
   m_ObjectHideFlags: 0
