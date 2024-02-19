@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -17,10 +18,19 @@ public class PlayerController : MonoBehaviour
 
     public TMP_Text ammoText; // Reference to UI text displaying ammo count
 
+    public int maxHealth = 10; // Maximum health points
+    private int currentHealth; // Current health points
+
+    public TMP_Text healthText; // Reference to UI text displaying health count
+    public string gameOverSceneName = "GameOver"; // Name of the gameover scene
+
     void Start()
     {
         currentAmmo = maxAmmo; // Initialize current ammo to maximum
         UpdateAmmoUI(); // Update UI text to display initial ammo count
+
+        currentHealth = maxHealth; // Initialize current health to maximum
+        UpdateHealthUI(); // Update UI text to display initial health count
     }
 
     void Update()
@@ -120,10 +130,53 @@ public class PlayerController : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    // Called when the player collides with an enemy
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Decrease player's health by 2
+            TakeDamage(2);
+
+            // Destroy the enemy
+            Destroy(collision.gameObject);
+
+            // Check if player's health is zero
+            if (currentHealth <= 0)
+            {
+                // Player has no health, end the game
+                EndGame();
+            }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            // Player has no health, end the game
+            EndGame();
+        }
+        // Update UI text to reflect health changes
+        UpdateHealthUI();
+    }
 
     void UpdateAmmoUI()
     {
         // Update the UI text to display current ammo count
         ammoText.text = "Ammo: " + currentAmmo.ToString();
+    }
+
+    void UpdateHealthUI()
+    {
+        // Update the UI text to display current health count
+        healthText.text = "HP: " + currentHealth.ToString();
+    }
+
+    void EndGame()
+    {
+       // Load the gameover scene
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }

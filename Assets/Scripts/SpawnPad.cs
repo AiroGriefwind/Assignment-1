@@ -1,76 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPad : MonoBehaviour
 {
-    public List<GameObject> objectPool; // List to hold a pool of objects
-    public Transform spawnPoint; // The position where the object will spawn
+    public GameObject enemyPrefab; // Reference to the enemy prefab
+    public Transform spawnPoint; // The position where the enemy will spawn
+    public float minSpawnInterval = 3f; // Minimum time between enemy spawns
+    public float maxSpawnInterval = 8f; // Maximum time between enemy spawns
 
     void Start()
     {
-        // Initialize object pool
-        //objectPool = new List<GameObject>();
-
-        InitializeObjectPool();
+        // Start spawning enemies at regular intervals
+        StartCoroutine(SpawnEnemyCoroutine());
     }
 
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")) // Check if the interacting object is the player
-        {
-            // Spawn object using coroutine
-            StartCoroutine(SpawnObjectCoroutine());
-        }
-    }
-
-    // Coroutine for object spawning
-    // Coroutine for object spawning
-    IEnumerator SpawnObjectCoroutine()
+    IEnumerator SpawnEnemyCoroutine()
     {
         while (true)
         {
-            // Wait for a random time before spawning next object
-            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            // Wait for a random time before spawning the next enemy
+            yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
 
-            // Randomly select an object from the pool
-            GameObject objToSpawn = objectPool[Random.Range(0, objectPool.Count)];
-
-            // Instantiate the object at the spawn point
-            GameObject spawnedObject = Instantiate(objToSpawn, spawnPoint.position, spawnPoint.rotation);
-
-            // Set the spawned object as active
-            spawnedObject.SetActive(true);
+            // Spawn enemy at the spawn point
+            SpawnEnemy();
         }
     }
 
-
-    // Initialize object pool
-    void InitializeObjectPool()
+    void SpawnEnemy()
     {
-        // Add objects to the pool
-        // You can add different types of objects to the pool here
-        //objectPool.Add(Resources.Load<GameObject>("Cube"));
-        //objectPool.Add(Resources.Load<GameObject>("Sphere"));
+        // Instantiate the enemy at the spawn point position and rotation
+        GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
 
-        // Set all objects in the pool as inactive initially
-        foreach (GameObject obj in objectPool)
-        {
-            obj.SetActive(false);
-        }
-    }
-
-    // Implement shuffle system by shuffling the object pool
-    void ShuffleObjectPool()
-    {
-        for (int i = 0; i < objectPool.Count; i++)
-        {
-            GameObject temp = objectPool[i];
-            int randomIndex = Random.Range(i, objectPool.Count);
-            objectPool[i] = objectPool[randomIndex];
-            objectPool[randomIndex] = temp;
-        }
+        // Optionally, you can add additional setup for the spawned enemy here
     }
 }
