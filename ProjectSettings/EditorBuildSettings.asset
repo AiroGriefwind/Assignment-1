@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Option.unity
     guid: 0bbc589be11e27842b8a462d56296909
+  - enabled: 1
+    path: Assets/Scenes/Clearing.unity
+    guid: b22b5ec6f2c9fee4eb6b102cb8595f2f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
