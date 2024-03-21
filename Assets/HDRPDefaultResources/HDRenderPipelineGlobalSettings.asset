@@ -30,7 +30,12 @@ MonoBehaviour:
       - rid: 2537081735629766828
       - rid: 2537081735629766829
     m_RuntimeSettings:
-      m_List: []
+      m_List:
+      - rid: 2537081735629766817
+      - rid: 2537081735629766818
+      - rid: 2537081735629766823
+      - rid: 2537081735629766827
+      - rid: 2537081735629766829
   m_DefaultVolumeProfile: {fileID: 11400000, guid: d5dfabc60ef83eb45b69dff453455e3f, type: 2}
   m_LookDevVolumeProfile: {fileID: 11400000, guid: 95d89f698b6b3e64fbd41e443a5330a7, type: 2}
   m_ObsoleteRenderingPathDefaultCameraFrameSettings:

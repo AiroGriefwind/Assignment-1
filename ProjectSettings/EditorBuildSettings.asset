@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: b73cde03f8da7bf489320b9a306665c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameOver.unity
     guid: 761ec33df975645499d681a48b32888b
   - enabled: 1
@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Option.unity
     guid: 0bbc589be11e27842b8a462d56296909
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Clearing.unity
     guid: b22b5ec6f2c9fee4eb6b102cb8595f2f
   m_configObjects: {}
