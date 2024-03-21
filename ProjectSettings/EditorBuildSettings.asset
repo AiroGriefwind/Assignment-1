@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 761ec33df975645499d681a48b32888b
   - enabled: 1
+    path: Assets/Scenes/BeautifulCorner.unity
+    guid: 720deeba6fa1ca843b32fc68e01d002f
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
